@@ -76,13 +76,9 @@ void tgm_bdmcmc_ma( int *iter, int *burnin, int G[], double g_prior[], double K[
 		for( i = 0; i < j; i++ )
 		{
 		    ij = j * dim + i;
-		   
-			if( ( g_prior[ ij ] != 0.0 ) or ( g_prior[ ij ] != 1.0 ) )
-			{
-    			index_row[ counter ] = i;
-    			index_col[ counter ] = j;
-    			counter++;
-			}
+			index_row[ counter ] = i;
+			index_col[ counter ] = j;
+			counter++;
 		}
 		
 	int sub_qp = counter;
@@ -161,8 +157,8 @@ void tgm_bdmcmc_ma( int *iter, int *burnin, int G[], double g_prior[], double K[
 
 // - - - STEP 2: Sampling from G-Wishart for new graph - - - - - - - - - - - - |
 		
-		rgwish_sigma( &G[0], &size_node[0], &Ts[0], &K[0], &sigma[0], b_star, &dim, threshold, &sigma_start[0], &inv_C[0], &beta_star[0], &sigma_i[0], sigma_start_N_i, sigma_N_i, N_i );		
-	
+		// rgwish_sigma( &G[0], &size_node[0], &Ts[0], &K[0], &sigma[0], b_star, &dim, threshold, &sigma_start[0], &inv_C[0], &beta_star[0], &sigma_i[0], sigma_start_N_i, sigma_N_i, N_i );		
+		rgwish_c(&G[0], &Ts[0], &K[0], b_star, &dim, threshold);		
 // - - - STEP 4: To update tu - - - - - - - - - - - - - - - - - - - - - - - - | 	
 	
         // void update_tu( double data[], double K[], double tu[], double mu[], double *nu, int *n, int *p )
