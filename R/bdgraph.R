@@ -486,7 +486,7 @@ plot.bdgraph = function( x, cut = 0.5, number.g = NULL,
 {
  	if( is.null( number.g ) )
 	{
- 	    sub = paste0( "Edge posterior probability = ", cut )
+ 	    sub = paste0( "Edge posterior probability > ", cut )
  	    
 	    BDgraph::plot.graph( x, cut = cut, sub = sub, 
 	                         main = main, 

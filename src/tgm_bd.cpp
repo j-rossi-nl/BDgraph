@@ -56,7 +56,7 @@ void tgm_bdmcmc_ma( int *iter, int *burnin, int G[], double g_prior[], double K[
 	vector<double> sigma( pxp ); 
 	vector<double> copyK( pxp ); 
 	memcpy( &copyK[0], K, sizeof( double ) * pxp );
-	inverse( &copyK[0], &sigma[0], &dim );			
+	inverse( &copyK[0], &sigma[0], &dim );			// Could be easier: K is diagonal with non-zero elts, so inverse(K) is diagonal with inverse elts
 
 	// Counting size of notes
 	vector<int> size_node( dim, 0 );
@@ -64,7 +64,7 @@ void tgm_bdmcmc_ma( int *iter, int *burnin, int G[], double g_prior[], double K[
 	{
 		ip = i * dim;
 		for( j = 0; j < dim; j++ ) 
-		    size_node[ i ] += G[ ip + j ];
+		    size_node[ i ] += G[ ip + j ];   // Row-Major ? + G is the zero-matrix so size_node is full of zeros
 	}
 	
 	// For finding the index of rates 
