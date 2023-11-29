@@ -13,8 +13,6 @@
 #ifndef copula_H
 #define copula_H
 
-#include "matrix.h"
-
 extern "C" {
 	void get_mean( double Z[], double K[], double *mu_ij, double *sigma, int *i, int *j, int *n, int *p );
 

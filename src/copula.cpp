@@ -10,8 +10,16 @@
 //   Maintainer: Reza Mohammadi <a.mohammadi@uva.nl>                           |
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |
   
+#include <vector> // for using vector
+
+#include <Rmath.h>
+#include <R_ext/BLAS.h>
+
 #include "copula.h"
-   
+#include "matrix.h"
+
+using namespace std;
+
 extern "C" {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |
 // Computing mean for copula function

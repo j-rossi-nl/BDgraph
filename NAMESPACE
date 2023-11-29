@@ -81,3 +81,6 @@ S3method( "plot" , "sim" )
 S3method( "print", "sim" )
 
 S3method( "plot", "graph" )
+
+importFrom(Rcpp, evalCpp)
+exportPattern("^[[:alpha:]]+")

@@ -10,23 +10,31 @@
 //     Maintainer: Reza Mohammadi <a.mohammadi@uva.nl>                                             |
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |
 
-#include <R.h>
+#ifndef rgwish_optim_H
+#define rgwish_optim_H
 
-#include "util.h"
+#include <vector>
 
-#ifdef _OPENMP
-#include <omp.h>
-#endif
-
-extern "C"
+class GWishart
 {
-	void omp_set_num_cores(int *cores, int *verbose_core)
-	{
-#ifdef _OPENMP
-		omp_set_num_threads(*cores);
-#else
-		if (*verbose_core == 1)
-			Rprintf("  This OS does not support multi-threading for the BDgraph package  \n");
+private:
+    int p;
+    int pxp;
+    int b;
+    double threshold;
+
+    std::vector<double> sigma_start;
+    std::vector<double> sigma_last;
+    std::vector<double> beta_star;
+    std::vector<double> sigma_start_i;
+    std::vector<double> sigma_start_N_i;
+    std::vector<int> N_i;
+    std::vector<double> sigma_N_i;
+
+public:
+    GWishart(int b, int p, double threshold);
+
+    void rgwish_c(int *G, double *Ts, double *K, double *sigma);
+};
+
 #endif
-	}
-}
