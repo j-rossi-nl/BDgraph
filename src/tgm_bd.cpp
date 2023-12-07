@@ -174,8 +174,8 @@ extern "C"
 			// rgwish_sigma( &G[0], &size_node[0], &Ts[0], &K[0], &sigma[0], b_star, &dim, threshold, &sigma_start[0], &inv_C[0], &beta_star[0], &sigma_i[0], sigma_start_N_i, sigma_N_i, N_i );
 
 			rgwish_c(G, &Ts[0], K, b_star, &dim, threshold);
-			// memcpy(&copyK[0], K, sizeof(double) * pxp); // copy_K = K
-			// inverse(&copyK[0], &sigma[0], &dim);		// sigma = inverse of copy_K
+			memcpy(&copyK[0], K, sizeof(double) * pxp); // copy_K = K
+			inverse(&copyK[0], &sigma[0], &dim);		// sigma = inverse of copy_K
 
 			// - - - STEP 4: To update tu - - - - - - - - - - - - - - - - - - - - - - - - |
 

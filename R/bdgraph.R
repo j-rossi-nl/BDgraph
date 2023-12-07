@@ -44,7 +44,7 @@ bdgraph = function( data, n = NULL, method = "ggm", algorithm = "bdmcmc", iter =
     colnames_data = list_S_n_p $ colnames_data
     
     if( ( is.null( cores ) ) & ( p < 16 ) ) 
-        cours = 1
+        cores = 1
         
     cores = BDgraph::get_cores( cores = cores, verbose = verbose )
     

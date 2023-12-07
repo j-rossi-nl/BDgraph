@@ -43,6 +43,7 @@ void test_rgwish()
     for (std::array<int, 2> edge : edges)
     {
         G[index_in_array(edge[1], edge[0], dim)] = 1;
+        G[index_in_array(edge[0], edge[1], dim)] = 1;
     }
 
     int *size_node = (int *)calloc(dim, sizeof(int));

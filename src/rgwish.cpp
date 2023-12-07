@@ -170,6 +170,7 @@ void rgwish_c(int G[], double Ts[], double K[], int *b, int *p, double *threshol
 		//		}
 	}
 
+	memcpy(&sigma_start[0], &sigma[0], pxp * sizeof(double));
 	inverse(&sigma[0], K, &dim);
 }
 

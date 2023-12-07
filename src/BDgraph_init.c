@@ -65,6 +65,7 @@ extern void transfer_data(void *, void *, void *, void *, void *);
 extern void update_mu(void *, void *, void *, void *, void *);
 extern void update_tu(void *, void *, void *, void *, void *, void *, void *);
 extern void test_rgwish();
+extern void test_submat();
 
 static const R_CMethodDef CEntries[] = {
     {"dgm_bdmcmc_mpl_binary_ma",               (DL_FUNC) &dgm_bdmcmc_mpl_binary_ma,               12},
@@ -126,6 +127,7 @@ static const R_CMethodDef CEntries[] = {
     {"update_mu",                              (DL_FUNC) &update_mu,                               5},
     {"update_tu",                              (DL_FUNC) &update_tu,                               7},
     {"test_rgwish",                              (DL_FUNC) &test_rgwish,                               0},
+    {"test_submat",                              (DL_FUNC) &test_submat,                               0},
     {NULL, NULL, 0}
 };
 

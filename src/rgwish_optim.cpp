@@ -35,6 +35,7 @@ GWishart::GWishart(int b, int p, double threshold) : p(p), pxp(p * p), b(b), thr
     this->sigma_start_N_i = vector<double>(p);
     this->N_i = vector<int>(p);
     this->sigma_N_i = vector<double>(this->pxp);
+    this->tmpSigma = vector<double>(this->pxp);
 }
 
 /*
@@ -110,28 +111,21 @@ void GWishart::rgwish_c(int *G, double *Ts, double *K, double *sigma)
                 (&transN, &transN, &p, &one, &p, &alpha, &sigma[0], &p, &beta_star[0], &p, &beta_zero, &sigma_start_i[0], &p FCONE FCONE);
 
                 // Update sigma
-                for (int j = 0; j < i; j++)
+                for (int j = 0; j < p; j++)
                 {
-                    sigma[index_in_array(i, j, p)] = sigma_start_i[j];
-                    sigma[index_in_array(j, i, p)] = sigma_start_i[j];
-                }
+                    if (i == j)
+                        continue;
 
-                for (int j = i + 1; j < p; j++)
-                {
                     sigma[index_in_array(i, j, p)] = sigma_start_i[j];
                     sigma[index_in_array(j, i, p)] = sigma_start_i[j];
                 }
             }
             else // No neighbor in G for node i
             {
-                for (int j = 0; j < i; j++)
+                for (int j = 0; j < p; j++)
                 {
-                    sigma[index_in_array(i, j, p)] = 0.0;
-                    sigma[index_in_array(j, i, p)] = 0.0;
-                }
-
-                for (int j = i + 1; j < p; j++)
-                {
+                    if (i == j)
+                        continue;
                     sigma[index_in_array(i, j, p)] = 0.0;
                     sigma[index_in_array(j, i, p)] = 0.0;
                 }
@@ -147,5 +141,6 @@ void GWishart::rgwish_c(int *G, double *Ts, double *K, double *sigma)
     }
 
     // K is the inverse of sigma
-    inverse(&sigma[0], K, &p);
+    memcpy(&tmpSigma[0], &sigma[0], pxp * sizeof(double));  // tmpSigma = sigma
+    inverse(&tmpSigma[0], K, &p);                           // inverse 
 }

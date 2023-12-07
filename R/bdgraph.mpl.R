@@ -52,7 +52,7 @@ bdgraph.mpl = function( data, n = NULL, method = "ggm", transfer = TRUE, algorit
 	    n <- nrow( data )
 	
     if( ( is.null( cores ) ) & ( p < 16 ) ) 
-        cours = 1
+        cores = 1
         
     cores = BDgraph::get_cores( cores = cores, verbose = verbose )
 	

@@ -30,6 +30,7 @@ private:
     std::vector<double> sigma_start_N_i;
     std::vector<int> N_i;
     std::vector<double> sigma_N_i;
+    std::vector<double> tmpSigma;
 
 public:
     GWishart(int b, int p, double threshold);
