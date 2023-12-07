@@ -99,7 +99,7 @@ void test_rgwish()
     }
     else
     {
-        Rprintf("Test OK.");
+        Rprintf("Test is OK.");
     }
 
     return;

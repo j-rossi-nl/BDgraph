@@ -164,7 +164,7 @@ extern "C"
 
 			// - - - STEP 2: Sampling from G-Wishart for new graph - - - - - - - - - - - - |
 
-// Re-initialize K
+// Re-initialize  K
 #pragma omp parallel for
 			for (i = 0; i < pxp; i++)
 				K[i] = 0.0;
